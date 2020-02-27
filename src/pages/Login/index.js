@@ -7,7 +7,7 @@ import SecundaryButton from '../../components/SecundaryButton'
 
 import { Container, Logo, Form, Input } from './styles';
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
     <Container >
       <Logo source={logo} />
@@ -30,7 +30,7 @@ export default function Login() {
 
       </Form>
 
-      <SecundaryButton title="CADASTRE-SE GRÁTIS"/>
+      <SecundaryButton title="CADASTRE-SE GRÁTIS" onPress={() => navigation.navigate('Register')}/>
 
     </Container>
   );
