@@ -26,7 +26,7 @@ export default function Login({ navigation }) {
           secureTextEntry={true}
         />
 
-        <PrimaryButton title="Entrar"/>
+        <PrimaryButton title="Entrar" onPress={() => navigation.navigate('UserRoutes')}/>
 
       </Form>
 
