@@ -32,9 +32,9 @@ export default function Login({ navigation }) {
             { name: 'UserRoutes', 
               params: { user: 'email' },
             },
-          ]
-        })
-      )
+          ],
+        }),
+      );
     }
   }
 
