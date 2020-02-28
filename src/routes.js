@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, CommonActions } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
@@ -15,7 +15,7 @@ import Profile from './pages/Profile'
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default function Routes() {
+export default function Routes({ navigation }) {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
@@ -52,15 +52,10 @@ function UserRoutes( { navigation } ){
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
-          if (route.name === 'Dashboard') {
-            iconName = 'home';
-          } else if (route.name === 'Wishes') {
-            iconName = 'heart';
-          } else if (route.name === 'Tickets'){
-            iconName = 'ticket';
-          }else if (route.name === 'Profile'){
-            iconName = 'user';
-          }
+          if (route.name === 'Dashboard')     iconName = 'home';
+          else if (route.name === 'Wishes')   iconName = 'heart';
+          else if (route.name === 'Tickets')  iconName = 'ticket';
+          else if (route.name === 'Profile')  iconName = 'user';
           
           return <FontAwesome name={iconName} size={size} color={color} />;
         },

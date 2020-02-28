@@ -5,14 +5,15 @@ import logo from '../../assets/logo.png'
 import PrimaryButton from '../../components/PrimaryButton'
 import SecundaryButton from '../../components/SecundaryButton'
 
-import { Container, Logo, Form, Input, DropDown } from './styles';
+import { Container, Logo, Form, DropDown } from './styles';
+import { Input } from '../../globalStyles';
 
 export default function Register({ navigation }) {
   return (
-    <Container >
+    <Container>
       <Logo source={logo} />
 
-      <Form>
+      <Form behavior="padding">
 
       <Input 
           placeholder="Nome Completo"

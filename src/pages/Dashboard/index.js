@@ -5,7 +5,10 @@ import Header from '../../components/Header';
 
 import { Container } from './styles';
 
-export default function Dashboard() {
+export default function Dashboard({ navigation }) {
+
+  
+
   return (
     <>
       <Header title="Eventos"/>
