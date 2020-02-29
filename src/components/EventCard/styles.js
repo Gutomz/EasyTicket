@@ -8,13 +8,27 @@ export const Container = styled.View`
   background-color: white;
   border-radius: 10px;
   flex: 1;
-  margin: 5px;
+  margin: 10px;
+`;
+
+export const ClickableEvent = styled.TouchableOpacity`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  flex: 1;
+`;
+
+export const ClickableIcon = styled.TouchableOpacity`
+  position: absolute;
+  align-self: flex-end;
+  right: 5px;
+  margin-top: 5px;
 `;
 
 export const Image = styled.Image`
   width: 100%;
   height: 100px;
-  background-color: blue;
+  background-color: grey;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 `;

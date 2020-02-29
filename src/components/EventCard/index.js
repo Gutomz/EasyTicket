@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { AntDesign } from '@expo/vector-icons';
+import { Container, Image, Title, Infos, Info, ClickableEvent, ClickableIcon } from './styles';
 
-import { Container, Image, Title, Infos, Info } from './styles';
+export default function EventCard({ style, title, date, time, liked, imageLink }) {
 
-export default function EventCard({ style }) {
+  const [iconName, setIconName] = useState('hearto');
+
+  useEffect(()=>{
+    setIconName(liked ? 'heart' : 'hearto');
+  }, [liked]);
+
+  function iconClick(){
+    //comunication with backend to set liked or not
+
+    setIconName(iconName === 'heart' ? 'hearto' : 'heart');
+  }
+
   return (
     <Container style={style}>
 
-      <Image />
+      <ClickableEvent>
+        <Image source={imageLink ? { uri: imageLink } : null}/>
 
-      <Title >Nome do Evento</Title>
+        <Title >{title}</Title>
 
-      <Infos>
-        <Info style={{textAlign: "left"}}>26/02/2020</Info>
-        <Info style={{textAlign: "right"}}>20:00</Info>
-      </Infos>
+        <Infos>
+          <Info style={{textAlign: "left"}}>{date}</Info>
+          <Info style={{textAlign: "right"}}>{time}</Info>
+        </Infos>
+
+      </ClickableEvent>
+
+      <ClickableIcon onPress={iconClick}>
+        <AntDesign name={iconName} size={28} color="#ff40c9"/>
+      </ClickableIcon>
 
     </Container>
   );
