@@ -12,27 +12,39 @@ export default function EventsList({ navigation, route }){
   const [filtredList, setFiltredList] = useState([]);
   const [likedEvents, setLikedEvents] = useState([]);
   const [locale, setLocale] = useState('Campinas');
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState('');
+  const [dataReady, setDataReady] = useState(false);
   const { likedOnly } = route.params;
   
   useEffect(()=>{
     async function setList(){
       //get list from backend based on locale
       //get user liked events index from backend
-
+      console.log('Get in');
       setLikedEvents(LIKEDEVENTS);
 
       let data = [];
       if(likedOnly) data = likedFilter(DATA);
       else data = localeFilter(DATA);
-      setEventsList(DATA);
+
+      setEventsList(data);
       setFiltredList(data);
+      setDataReady(true);
     }
 
     setList();
   }, []);
 
+  useEffect(()=>{
+    if(!dataReady) return;
+    let data = [];
+    console.log("Get in 2")
+    if(likedOnly) data = likedFilter(eventsList); 
+    else data = eventsList;
 
+    setFiltredList(titleFilter(data));
+
+  }, [filter]);
 
   function createRows(data, columns) {
     let newLenght = 0;
@@ -57,21 +69,12 @@ export default function EventsList({ navigation, route }){
     navigation.navigate('Event', { eventID: item.id })
   }
 
-  useEffect(()=>{
-    let data = [];
-
-    if(likedOnly) data = likedFilter(eventsList); 
-    else data = eventsList;
-
-    setFiltredList(titleFilter(data));
-
-  }, [filter]);
-
   function likedFilter(_data){
     let data = [];
     for(let i = 0; i < _data.length; i++){
-      if(LIKEDEVENTS.find(item => item.id === _data[i].id))
-        data.push(_data[i]);
+      if(!_data[i].empty)
+        if(LIKEDEVENTS.find(item => item.id === _data[i].id))
+          data.push(_data[i]);
     }
 
     return data;
@@ -80,8 +83,9 @@ export default function EventsList({ navigation, route }){
   function localeFilter(_data){
     let data = [];
     for(let i = 0; i < _data.length; i++){
-      if(_data[i].locale === locale)
-        data.push(_data[i]);
+      if(!_data[i].empty)
+        if(_data[i].locale === locale)
+          data.push(_data[i]);
     }
 
     return data;
@@ -89,9 +93,11 @@ export default function EventsList({ navigation, route }){
 
   function titleFilter(_data){
     let data = [];
+    console.log(_data);
     for(let i = 0; i < _data.length; i++){
-      if(_data[i].title.includes(filter))
-        data.push(_data[i]);
+      if(!_data[i].empty)
+        if(_data[i].title.includes(filter))
+          data.push(_data[i]);
     }
 
     return data;
@@ -132,8 +138,10 @@ const DATA = [
     title: 'Event 1',
     date: '27/04/20',
     time: '16:00',
-    liked: false,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: 'Uma abobcaobocvaboobobaobvoabvobaoivbioabvoabov aobn voabnovbaobvoabnvoabnovoaibovhaovchaohcoahcoahsocihasiohcoiashcohasoichaosihcoiashocihasoihcoiashcoiahcoihasoichaoishcoiahochabhcaghcvuagbuvgauçagcvuagvuckagçukksgcuksagcuaguigcuga gusgc uasg uigu gpa cuiag cuiga uga uia gfuiag uif gaiug uiag uig aiug uiag udigauifg ausiguaig fua ug cauig aupiguiasgcfuigasiu cfdsg fuidsg fupgsad ufvpgas vuigsdapfuigds puif pasg fup gsadfuisd gfuip gfuip gasdufgasipfauipgfuiag gdiwgbd ugwuigauifdag iufuia gfaug fuag ufigauicgaui gfuagf lagfu agl fgaui gau gfuagfu ia glfga uiguaig fialgufigauilfuiagfualg fuag fugauilfgaulgauu g ilgfuiag fuag uailg uagauig algufagug lafga ugaulig aulig aulga fuaguiagliaufguafi gafliug aiuga afug afuigauiag aufgu g gaufgafulgaugluafgafu gaualg alua aul au aualaug aul',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -141,8 +149,10 @@ const DATA = [
     title: 'Event 2',
     date: '15/04/20',
     time: '17:00',
-    liked: true,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -150,8 +160,9 @@ const DATA = [
     title: 'Event 3',
     date: '24/04/20',
     time: '14:00',
-    liked: false,
     locale: 'Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -159,8 +170,10 @@ const DATA = [
     title: 'Event 4',
     date: '27/07/20',
     time: '19:00',
-    liked: false,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -168,8 +181,10 @@ const DATA = [
     title: 'Event 5',
     date: '06/08/20',
     time: '08:00',
-    liked: true,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -177,8 +192,10 @@ const DATA = [
     title: 'Event 6',
     date: '05/05/20',
     time: '17:00',
-    liked: false,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -186,8 +203,10 @@ const DATA = [
     title: 'Event 7',
     date: '10/04/20',
     time: '09:00',
-    liked: false,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -195,8 +214,10 @@ const DATA = [
     title: 'Event 8',
     date: '22/05/20',
     time: '22:00',
-    liked: false,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -204,8 +225,10 @@ const DATA = [
     title: 'Event 9',
     date: '03/10/20',
     time: '20:00',
-    liked: false,
     locale: 'Campinas',
+    address: 'Casa de Eventos Campinas',
+    description: '',
+    price: 20,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
 ];
