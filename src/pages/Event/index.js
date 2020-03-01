@@ -15,7 +15,7 @@ export default function Event({ navigation, route }) {
   const [iconName, setIconName] = useState('hearto');
   const [showPrice, setShowPrice] = useState(0);
 
-  const { eventID } = route.params;
+  const { eventID, buy } = route.params;
 
   useEffect(()=>{
     async function loadEvent(){
@@ -65,22 +65,24 @@ export default function Event({ navigation, route }) {
       </ScrollContainer>
       
 
-      <Footer>
-        <NumericContainer>
-          <Clickable onPress={() => {(quantity > 1) ? quantityChange(-1) : null}}>
-            <AntDesign name={'minus'} size={26} color="black"/>
+      { buy ? 
+        <Footer>
+          <NumericContainer>
+            <Clickable onPress={() => {(quantity > 1) ? quantityChange(-1) : null}}>
+              <AntDesign name={'minus'} size={26} color="black"/>
+            </Clickable>
+            <Number>{quantity}</Number>
+            <Clickable onPress={() => {(quantity < 999) ? quantityChange(+1) : null}} >
+              <AntDesign name={'plus'} size={26} color="black"/>
+            </Clickable>
+          </NumericContainer>
+          <Price>R$ {(showPrice).toFixed(2)}</Price>
+          <Clickable>
+            <Buy>COMPRAR</Buy>
           </Clickable>
-          <Number>{quantity}</Number>
-          <Clickable onPress={() => {(quantity < 999) ? quantityChange(+1) : null}} >
-            <AntDesign name={'plus'} size={26} color="black"/>
-          </Clickable>
-        </NumericContainer>
-        <Price>R$ {(showPrice).toFixed(2)}</Price>
-        <Clickable>
-          <Buy>COMPRAR</Buy>
-        </Clickable>
 
-      </Footer>
+        </Footer>
+      : null}
     </Container>
   );
 }

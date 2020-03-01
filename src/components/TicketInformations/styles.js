@@ -28,11 +28,14 @@ export const Infos = styled.View`
 export const UserNameInfo = styled.Text`
   color: white;
   text-align: center;
+  font-size: 18px;
+  margin-bottom: 5px;
 `;
 
 export const UserDocumentInfo = styled.Text`
   color: white;
   text-align: center;
+  font-size: 14px;
 `;
 
 export const TicketInfos = styled.View`
@@ -43,10 +46,12 @@ export const TicketInfos = styled.View`
   justify-content: center;
   margin-top: 20px;
   padding: 5px;
+  flex-direction: row;
 `;
 
 export const TicketBuyDate = styled.Text`
   color: white;
   text-align: center;
+  font-size: 14px;
 `;
 

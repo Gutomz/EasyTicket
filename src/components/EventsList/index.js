@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Text } from 'react-native'
 
-import { Container, ToolContainer } from './styles';
+import { Container, ToolContainer, EmptyMessage } from './styles';
 
 import EventCard from '../EventCard';
 import SearchBar from '../SearchBar';
@@ -20,7 +20,6 @@ export default function EventsList({ navigation, route }){
     async function setList(){
       //get list from backend based on locale
       //get user liked events index from backend
-      console.log('Get in');
       setLikedEvents(LIKEDEVENTS);
 
       let data = [];
@@ -38,7 +37,6 @@ export default function EventsList({ navigation, route }){
   useEffect(()=>{
     if(!dataReady) return;
     let data = [];
-    console.log("Get in 2")
     if(likedOnly) data = likedFilter(eventsList); 
     else data = eventsList;
 
@@ -48,6 +46,7 @@ export default function EventsList({ navigation, route }){
 
   function createRows(data, columns) {
     let newLenght = 0;
+    if(data.length == 0) return [];
     data.forEach(element => {
       if(!element.empty) newLenght++;
     });
@@ -61,12 +60,11 @@ export default function EventsList({ navigation, route }){
       });
       lastRowElements += 1; 
     }
-    //console.log(data.length);
     return data;
   }
 
   function eventClicked(item){
-    navigation.navigate('Event', { eventID: item.id })
+    navigation.navigate('Event', { eventID: item.id, buy: true })
   }
 
   function likedFilter(_data){
@@ -93,7 +91,6 @@ export default function EventsList({ navigation, route }){
 
   function titleFilter(_data){
     let data = [];
-    console.log(_data);
     for(let i = 0; i < _data.length; i++){
       if(!_data[i].empty)
         if(_data[i].title.includes(filter))
@@ -125,7 +122,7 @@ export default function EventsList({ navigation, route }){
         }
         keyExtractor={item => item.id}
         numColumns={2}
-        ListEmptyComponent={() => {return <Text>Lista Vazia</Text>}}
+        ListEmptyComponent={() => {return <EmptyMessage>Nenhum evento encontrado</EmptyMessage>}}
       />
 
     </Container>

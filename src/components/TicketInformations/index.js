@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { Container, Code, QRCode, Infos, UserNameInfo, UserDocumentInfo, TicketInfos, TicketBuyDate } from './styles';
-
-export default function TicketInformations({ translateY }) {
+export default function TicketInformations({ translateY, buyDate, buyTime, userName, userDocument }) {
 
   return (
     <Container style={{
@@ -14,17 +13,18 @@ export default function TicketInformations({ translateY }) {
       <Code>
         <QRCode 
           value="https://google.com"
-          size={80}
-          bgColor="#FFF"
-          fgColor="#000"
+          size={120}
+          backgroundColor="#FFF"
+          color="#000"
         />
       </Code>
 
       <Infos>
-        <UserNameInfo>Nome do Usuário</UserNameInfo>
-        <UserDocumentInfo>(documento do usuário)</UserDocumentInfo>
+        <UserNameInfo >{userName}</UserNameInfo>
+        <UserDocumentInfo>({userDocument})</UserDocumentInfo>
         <TicketInfos>
-          <TicketBuyDate>Comprado em 00/00/0000 às 00:00:00</TicketBuyDate>
+          <TicketBuyDate>Comprado em {buyDate}</TicketBuyDate>
+          <TicketBuyDate> às {buyTime}</TicketBuyDate>
         </TicketInfos>
       </Infos>
 

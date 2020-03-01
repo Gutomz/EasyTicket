@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text } from 'react-native';
-import { Container, ToolContainer } from './styles';
+import { Container, ToolContainer, EmptyMessage } from './styles';
 
 import TicketCard from '../TicketCard';
 import SearchBar from '../SearchBar';
@@ -23,8 +23,24 @@ export default function TicketsList({ navigation }) {
     setList();
   }, []);
 
+  useEffect(() => {
+
+    if(!dataReady) return;
+    setFiltredList(titleFilter(ticketsList));
+
+  }, [filter]);
+
+  function titleFilter(_data){
+    let data = [];
+    for(let i = 0; i < _data.length; i++){
+      if(_data[i].event.title.includes(filter))
+        data.push(_data[i]);
+    }
+    return data;
+  }
+
   function eventClicked(item){
-    navigation.navigate('Ticket', { eventID: item.event.id })
+    navigation.navigate('Ticket', { ticketID: item.id })
   }
 
   return (
@@ -36,7 +52,6 @@ export default function TicketsList({ navigation }) {
       <FlatList
         data={filtredList}
         renderItem={({ item }) => {
-            if(item.empty) return <TicketCard style={{opacity:0}}/>
             return <TicketCard 
               title={item.event.title}
               date={item.event.date}
@@ -49,7 +64,7 @@ export default function TicketsList({ navigation }) {
           }
         }
         keyExtractor={item => item.id}
-        ListEmptyComponent={() => {return <Text>Lista Vazia</Text>}}
+        ListEmptyComponent={() => {return <EmptyMessage>Nenhum ingresso encontrado</EmptyMessage>}}
       />
 
     </Container>
@@ -71,7 +86,9 @@ DATA = [
       imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
     },
     userName: 'Augusto',
-    userDocument: '37.556.008-7'
+    userDocument: '37.556.008-7',
+    buyDate: '23/04/2020',
+    buyTime: '17:25:13',
   },
   {
     id: '02',
@@ -87,86 +104,8 @@ DATA = [
       imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
     },
     userName: 'Augusto',
-    userDocument: '37.556.008-7'
-  },
-  {
-    id: '03',
-    event: {
-      id: '58694a0f-3da1-471f-bcz-145571e29d72',
-      title: 'Event 4',
-      date: '27/07/20',
-      time: '19:00',
-      locale: 'Campinas',
-      address: 'Casa de Eventos Campinas',
-      description: '',
-      price: 20,
-      imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
-    },
-    userName: 'Augusto',
-    userDocument: '37.556.008-7'
-  },
-  {
-    id: '04',
-    event: {
-      id: '58694a0f-3da1-471f-bcz-145571e29d72',
-      title: 'Event 4',
-      date: '27/07/20',
-      time: '19:00',
-      locale: 'Campinas',
-      address: 'Casa de Eventos Campinas',
-      description: '',
-      price: 20,
-      imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
-    },
-    userName: 'Augusto',
-    userDocument: '37.556.008-7'
-  },
-  {
-    id: '05',
-    event: {
-      id: '58694a0f-3da1-471f-bcz-145571e29d72',
-      title: 'Event 4',
-      date: '27/07/20',
-      time: '19:00',
-      locale: 'Campinas',
-      address: 'Casa de Eventos Campinas',
-      description: '',
-      price: 20,
-      imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
-    },
-    userName: 'Augusto',
-    userDocument: '37.556.008-7'
-  },
-  {
-    id: '06',
-    event: {
-      id: '58694a0f-3da1-471f-bcz-145571e29d72',
-      title: 'Event 4',
-      date: '27/07/20',
-      time: '19:00',
-      locale: 'Campinas',
-      address: 'Casa de Eventos Campinas',
-      description: '',
-      price: 20,
-      imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
-    },
-    userName: 'Augusto',
-    userDocument: '37.556.008-7'
-  },
-  {
-    id: '07',
-    event: {
-      id: '58694a0f-3da1-471f-bcz-145571e29d72',
-      title: 'Event 4',
-      date: '27/07/20',
-      time: '19:00',
-      locale: 'Campinas',
-      address: 'Casa de Eventos Campinas',
-      description: '',
-      price: 20,
-      imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
-    },
-    userName: 'Augusto',
-    userDocument: '37.556.008-7'
+    userDocument: '37.556.008-7',
+    buyDate: '01/03/2020',
+    buyTime: '14:10:45',
   },
 ];

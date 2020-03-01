@@ -15,10 +15,8 @@ export const ToolContainer = styled.View`
 
 export const EmptyMessage = styled.Text`
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
-  top: 50px;
-  width: 100%;
-  position: absolute;
+  margin-top: 10px;
 `;
 
