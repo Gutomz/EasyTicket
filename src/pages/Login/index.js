@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AsyncStorage } from 'react-native';
 
 import logo from '../../assets/logo.png'
 import PrimaryButton from '../../components/PrimaryButton'
@@ -8,7 +9,7 @@ import { CommonActions } from '@react-navigation/native';
 import { Container, Logo, Form } from './styles';
 import { Input } from '../../globalStyles';
 
-export default function Login({ navigation }) {
+export default function Login({ navigation, route }) {
 
   const [email, setEmail] = useState('');
   const [password, SetPassword] = useState('');
@@ -24,15 +25,13 @@ export default function Login({ navigation }) {
     if(validateInputs()){
       //Search the account on backend
 
+      AsyncStorage.setItem('user', email);
+
       //Ir para a dashboard sem voltar atrás
       navigation.dispatch(
         CommonActions.reset({
           index: 1,
-          routes: [
-            { name: 'UserRoutes', 
-              params: { user: 'email' },
-            },
-          ],
+          routes: [{ name: 'UserRoutes'}],
         }),
       );
     }

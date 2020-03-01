@@ -5,7 +5,9 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   height: 40px;
+  width: 100%;
   background-color: #363941;
+  flex: 1;
 `;
 
 export const Bar = styled.View`

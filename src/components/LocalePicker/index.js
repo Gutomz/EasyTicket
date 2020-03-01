@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { AsyncStorage } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 
 import { Container, Picker } from './styles';
 
-export default function LocalePicker( ) {
+export default function LocalePicker() {
 
-  const [locale, setLocale] = useState('null');
+  const [locale, setLocale] = useState('Campinas');
 
   function localeChange(value){
     setLocale(value);
+    AsyncStorage.setItem('locale', value);
   }
 
   return (
