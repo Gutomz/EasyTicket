@@ -13,3 +13,12 @@ export const ToolContainer = styled.View`
   align-items: center;
 `;
 
+export const EmptyMessage = styled.Text`
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  top: 50px;
+  width: 100%;
+  position: absolute;
+`;
+

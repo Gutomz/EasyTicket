@@ -3,12 +3,13 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import { Container, Input, IconContainer, Bar } from './styles';
 
-export default function SearchBar() {
+export default function SearchBar({ setTextFunction }) {
 
   const [text, setText] = useState('');
 
   function textChange(value){
     setText(value);
+    if(setTextFunction) setTextFunction(value);
   }
 
   return (

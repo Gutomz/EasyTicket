@@ -5,13 +5,14 @@ import { Container, ToolContainer } from './styles';
 
 import EventCard from '../EventCard';
 import SearchBar from '../SearchBar';
-import LocalePicker from '../LocalePicker';
 
 export default function EventsList({ navigation, route }){
 
   const [eventsList, setEventsList] = useState([]);
+  const [filtredList, setFiltredList] = useState([]);
   const [likedEvents, setLikedEvents] = useState([]);
   const [locale, setLocale] = useState('Campinas');
+  const [filter, setFilter] = useState('')
   const { likedOnly } = route.params;
   
   useEffect(()=>{
@@ -20,19 +21,12 @@ export default function EventsList({ navigation, route }){
       //get user liked events index from backend
 
       setLikedEvents(LIKEDEVENTS);
+
       let data = [];
-      if(likedOnly)
-        for(let i = 0; i < DATA.length; i++){
-          if(LIKEDEVENTS.find(item => item.id === DATA[i].id))
-            data.push(DATA[i]);
-        }
-      else {
-        for(let i = 0; i < DATA.length; i++){
-          if(DATA[i].locale === locale)
-            data.push(DATA[i]);
-        }
-      }
-      setEventsList(data);
+      if(likedOnly) data = likedFilter(DATA);
+      else data = localeFilter(DATA);
+      setEventsList(DATA);
+      setFiltredList(data);
     }
 
     setList();
@@ -63,16 +57,54 @@ export default function EventsList({ navigation, route }){
     navigation.navigate('Event', { eventID: item.id })
   }
 
+  useEffect(()=>{
+    let data = [];
+
+    if(likedOnly) data = likedFilter(eventsList); 
+    else data = eventsList;
+
+    setFiltredList(titleFilter(data));
+
+  }, [filter]);
+
+  function likedFilter(_data){
+    let data = [];
+    for(let i = 0; i < _data.length; i++){
+      if(LIKEDEVENTS.find(item => item.id === _data[i].id))
+        data.push(_data[i]);
+    }
+
+    return data;
+  }
+
+  function localeFilter(_data){
+    let data = [];
+    for(let i = 0; i < _data.length; i++){
+      if(_data[i].locale === locale)
+        data.push(_data[i]);
+    }
+
+    return data;
+  }
+
+  function titleFilter(_data){
+    let data = [];
+    for(let i = 0; i < _data.length; i++){
+      if(_data[i].title.includes(filter))
+        data.push(_data[i]);
+    }
+
+    return data;
+  }
 
   return (
     <Container >
       <ToolContainer>
-        <SearchBar />
-        {likedOnly ? null : <LocalePicker />}
+        <SearchBar setTextFunction={setFilter}/>
       </ToolContainer>
       
       <FlatList
-        data={createRows(eventsList, 2)}
+        data={createRows(filtredList, 2)}
         renderItem={({ item }) => {
             if(item.empty) return <EventCard style={{opacity:0}}/>
             return <EventCard 

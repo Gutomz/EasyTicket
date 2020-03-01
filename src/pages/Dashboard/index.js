@@ -19,6 +19,9 @@ export default function Dashboard({ navigation }) {
             backgroundColor: "#363941",
           },
           headerTintColor: "#ffffff",
+          headerRight: () => (
+            <LocalePicker />
+          )
         }}
       />
     </Stack.Navigator>
