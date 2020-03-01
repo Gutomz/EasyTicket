@@ -7,5 +7,3 @@ export const Container = styled.View`
   justify-content: center;
 `;
 
-export const List = styled.FlatList`
-`;

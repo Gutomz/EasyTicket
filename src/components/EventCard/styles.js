@@ -5,10 +5,19 @@ export const Container = styled.View`
   height: 180px;
   max-width: 50%;
   max-height: 180px;
-  background-color: white;
   border-radius: 10px;
   flex: 1;
   margin: 10px;
+`;
+
+export const InfosBackground = styled.View`
+  width: 100%;
+  height:100%;
+  background-color: white;
+  opacity: 0.8;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  flex: 1;
 `;
 
 export const ClickableEvent = styled.TouchableOpacity`

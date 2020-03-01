@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import { Container, Image, Title, Infos, Info, ClickableEvent, ClickableIcon } from './styles';
+import { Container, Image, Title, InfosBackground, Infos, Info, ClickableEvent, ClickableIcon } from './styles';
 
-export default function EventCard({ style, title, date, time, liked, imageLink }) {
+export default function EventCard({ style, title, date, time, liked, imageLink, onPress }) {
 
   const [iconName, setIconName] = useState('hearto');
 
@@ -19,15 +19,17 @@ export default function EventCard({ style, title, date, time, liked, imageLink }
   return (
     <Container style={style}>
 
-      <ClickableEvent>
+      <ClickableEvent onPress={onPress}>
         <Image source={imageLink ? { uri: imageLink } : null}/>
 
-        <Title >{title}</Title>
+        <InfosBackground>
+          <Title >{title}</Title>
 
-        <Infos>
-          <Info style={{textAlign: "left"}}>{date}</Info>
-          <Info style={{textAlign: "right"}}>{time}</Info>
-        </Infos>
+          <Infos>
+            <Info style={{textAlign: "left"}}><AntDesign name="calendar" size={12}/> {date}</Info>
+            <Info style={{textAlign: "right"}}><AntDesign name="clockcircleo" size={12}/>{" " + time}</Info>
+          </Infos>
+        </InfosBackground>
 
       </ClickableEvent>
 

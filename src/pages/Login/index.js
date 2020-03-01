@@ -42,7 +42,7 @@ export default function Login({ navigation }) {
     <Container>
       <Logo source={logo} />
 
-      <Form behavior="padding">
+      <Form behavior="padding" enabled>
 
         <Input 
           placeholder="E-mail"

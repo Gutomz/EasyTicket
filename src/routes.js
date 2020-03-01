@@ -6,6 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import Login from './pages/Login'
 import Register from './pages/Register'
+import EventScreen from './pages/Event'
 
 import Dashboard from './pages/Dashboard'
 import Wishes from './pages/Wishes'
@@ -35,6 +36,16 @@ export default function Routes({ navigation }) {
         <Stack.Screen name="UserRoutes" component={UserRoutes} 
           options={{
             headerShown: false,
+          }}
+        />
+
+        <Stack.Screen name="Event" component={EventScreen} mode="modal"
+          options={{
+            title: 'Evento',
+            headerStyle:{
+              backgroundColor: "#363941",
+            },
+            headerTintColor: "#ffffff",
           }}
         />
 
