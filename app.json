@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Easy Ticket",
-    "slug": "mobile",
+    "slug": "easyticket",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -23,8 +23,11 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    }
+    "android": {
+      "package": "com.gutomz.Easy_Ticket",
+      "versionCode": 1
+    },
+    "description": "",
+    "githubUrl": "https://github.com/Gutomz/Desafio-MB-Labs"
   }
 }

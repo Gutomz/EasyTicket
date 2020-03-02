@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
+import { CommonActions } from '@react-navigation/native';
+import { TouchableOpacity, Text } from 'react-native';
 
 import { Container } from './styles';
 
@@ -7,7 +9,7 @@ import UserInfoCard from '../../components/UserInfoCard'
 
 const Stack = createStackNavigator();
 
-export default function Profile() {
+export default function Profile({ navigation }) {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Profile" component={ProfileInfos}
@@ -17,6 +19,13 @@ export default function Profile() {
             backgroundColor: "#363941",
           },
           headerTintColor: "#ffffff",
+          headerRight: () => (
+            <TouchableOpacity style={{marginRight: 20}} 
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Text style={{ fontSize: 16, color: "#fff"}}>Sair</Text>
+            </TouchableOpacity>
+          )
         }}
       />
     </Stack.Navigator>
