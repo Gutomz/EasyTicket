@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import EventScreen from './pages/Event'
 import TicketScreen from './pages/Ticket'
+import UserInfoScreen from './pages/EditUserInfo'
 
 import Dashboard from './pages/Dashboard'
 import Wishes from './pages/Wishes'
@@ -53,6 +54,16 @@ export default function Routes({ navigation }) {
         <Stack.Screen name="Ticket" component={TicketScreen} mode="modal"
           options={{
             title: 'Ingresso',
+            headerStyle:{
+              backgroundColor: "#363941",
+            },
+            headerTintColor: "#ffffff",
+          }}
+        />
+
+        <Stack.Screen name="UserInfo" component={UserInfoScreen} mode="modal"
+          options={{
+            title: 'Editar Informação',
             headerStyle:{
               backgroundColor: "#363941",
             },

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { FlatList } from 'react-native'
 
 import { Container, ToolContainer, EmptyMessage } from './styles';
@@ -6,12 +7,12 @@ import { Container, ToolContainer, EmptyMessage } from './styles';
 import EventCard from '../EventCard';
 import SearchBar from '../SearchBar';
 
-export default function EventsList({ navigation, route }){
+const EventsList = ({ navigation, route, locale }) => {
 
   const [eventsList, setEventsList] = useState([]);
   const [filtredList, setFiltredList] = useState([]);
   const [likedEvents, setLikedEvents] = useState([]);
-  const [locale, setLocale] = useState('Campinas');
+  //const [locale, setLocale] = useState('Campinas');
   const [filter, setFilter] = useState('');
   const [dataReady, setDataReady] = useState(false);
   const { likedOnly } = route.params;
@@ -21,7 +22,7 @@ export default function EventsList({ navigation, route }){
       //get list from backend based on locale
       //get user liked events index from backend
       setLikedEvents(LIKEDEVENTS);
-
+      console.log(locale);
       let data = [];
       if(likedOnly) data = likedFilter(DATA);
       else data = localeFilter(DATA);
@@ -46,11 +47,19 @@ export default function EventsList({ navigation, route }){
     if(!dataReady) return;
     let data = [];
     if(likedOnly) data = likedFilter(eventsList); 
-    else data = eventsList;
+    else {
+      data = eventsList;
+    }
 
     setFiltredList(titleFilter(data));
 
   }, [filter]);
+
+  useEffect(() => {
+    let data = localeFilter(DATA)
+    setEventsList(data);
+    setFiltredList(data);
+  }, [locale])
 
   function createRows(data, columns) {
     let newLenght = 0;
@@ -136,6 +145,8 @@ export default function EventsList({ navigation, route }){
     </Container>
   )
 }
+
+export default connect(state => ({ locale: state.locale }))(EventsList);
 
 const DATA = [
   {

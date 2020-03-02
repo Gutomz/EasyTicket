@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { Container } from './styles';
@@ -23,11 +23,29 @@ export default function Profile() {
   );
 }
 
-function ProfileInfos(){
+function ProfileInfos({ navigation }){
+
+  const [name, setName] = useState('Nome do Usuário');
+  const [rg, setRG] = useState('Rg do Usuário');
+  const [edited, setEdited] = useState(false);
+
+  useEffect(() => {
+    //save userData on Backend
+    if(edited){
+      alert("Informações Salvas")
+      setEdited(false);
+    }
+      
+  }, [name, rg])
+
+  function cardClick(info, setInfo){
+    navigation.navigate('UserInfo', { info, setInfo, setEdited });
+  }
+
   return (
     <Container >
-      <UserInfoCard title="Nome Completo" info={'Nome do Usuário'} editable/>
-      <UserInfoCard title="RG" info={'RG do Usuário'} editable/>
+      <UserInfoCard title="Nome Completo" info={name} onPress={() => cardClick(name, setName)} editable/>
+      <UserInfoCard title="RG" info={rg} onPress={() => cardClick(rg, setRG)} editable/>
       <UserInfoCard title="Email" info={'Email do Usuário'}/>
     </Container>
   )
