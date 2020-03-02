@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import EventScreen from './pages/Event'
 import TicketScreen from './pages/Ticket'
 import UserInfoScreen from './pages/EditUserInfo'
+import Checkout from './pages/Checkout'
 
 import Dashboard from './pages/Dashboard'
 import Wishes from './pages/Wishes'
@@ -64,6 +65,16 @@ export default function Routes({ navigation }) {
         <Stack.Screen name="UserInfo" component={UserInfoScreen} mode="modal"
           options={{
             title: 'Editar Informação',
+            headerStyle:{
+              backgroundColor: "#363941",
+            },
+            headerTintColor: "#ffffff",
+          }}
+        />
+
+        <Stack.Screen name="Checkout" component={Checkout} mode="modal"
+          options={{
+            title: 'Finalizar Compra',
             headerStyle:{
               backgroundColor: "#363941",
             },

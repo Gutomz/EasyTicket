@@ -40,8 +40,7 @@ const LocalePicker = ({ locale, dispatch }) => {
       >
         <Picker.Item label="Campinas" value='Campinas' />
         <Picker.Item label="São Paulo" value='São Paulo' />
-        <Picker.Item label="Americana" value='Americana' />
-        <Picker.Item label="Paulínia" value='Paulínia' />
+        <Picker.Item label="Outra" value='Outra' />
       </Picker>
 
     </Container>

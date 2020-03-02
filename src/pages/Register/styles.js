@@ -18,10 +18,3 @@ export const Form = styled.KeyboardAvoidingView`
   margin-bottom: 30px;
   height: auto;
 `;
-
-export const DropDown = styled.Picker`
-  margin-top: 30px;
-  color: #888888;
-  border: 1px;
-  border-color: #fff;
-`;

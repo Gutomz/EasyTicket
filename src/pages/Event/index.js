@@ -77,7 +77,7 @@ export default function Event({ navigation, route }) {
             </Clickable>
           </NumericContainer>
           <Price>R$ {(showPrice).toFixed(2)}</Price>
-          <Clickable>
+          <Clickable onPress={() => navigation.navigate('Checkout', { eventID, quantity, showPrice })}>
             <Buy>COMPRAR</Buy>
           </Clickable>
 
@@ -96,7 +96,7 @@ const DATA = [
     locale: 'Campinas',
     address: 'Casa de Eventos Campinas',
     description: 'Uma abobcaobocvaboobobaobvoabvobaoivbioabvoabov aobn voabnovbaobvoabnvoabnovoaibovhaovchaohcoahcoahsocihasiohcoiashcohasoichaosihcoiashocihasoihcoiashcoiahcoihasoichaoishcoiahochabhcaghcvuagbuvgauçagcvuagvuckagçukksgcuksagcuaguigcuga gusgc uasg uigu gpa cuiag cuiga uga uia gfuiag uif gaiug uiag uig aiug uiag udigauifg ausiguaig fua ug cauig aupiguiasgcfuigasiu cfdsg fuidsg fupgsad ufvpgas vuigsdapfuigds puif pasg fup gsadfuisd gfuip gfuip gasdufgasipfauipgfuiag gdiwgbd ugwuigauifdag iufuia gfaug fuag ufigauicgaui gfuagf lagfu agl fgaui gau gfuagfu ia glfga uiguaig fialgufigauilfuiagfualg fuag fugauilfgaulgauu g ilgfuiag fuag uailg uagauig algufagug lafga ugaulig aulig aulga fuaguiagliaufguafi gafliug aiuga afug afuigauiag aufgu g gaufgafulgaugluafgafu gaualg alua aul au aualaug aul',
-    price: 20,
+    price: 50,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -104,10 +104,10 @@ const DATA = [
     title: 'Event 2',
     date: '15/04/20',
     time: '17:00',
-    locale: 'Campinas',
-    address: 'Casa de Eventos Campinas',
+    locale: 'São Paulo',
+    address: 'Casa de Eventos São Paulo',
     description: '',
-    price: 20,
+    price: 10,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -117,7 +117,7 @@ const DATA = [
     time: '14:00',
     locale: 'Campinas',
     description: '',
-    price: 20,
+    price: 25,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -128,7 +128,7 @@ const DATA = [
     locale: 'Campinas',
     address: 'Casa de Eventos Campinas',
     description: '',
-    price: 20,
+    price: 25.50,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -139,7 +139,7 @@ const DATA = [
     locale: 'Campinas',
     address: 'Casa de Eventos Campinas',
     description: '',
-    price: 20,
+    price: 100,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -147,10 +147,10 @@ const DATA = [
     title: 'Event 6',
     date: '05/05/20',
     time: '17:00',
-    locale: 'Campinas',
-    address: 'Casa de Eventos Campinas',
+    locale: 'São Paulo',
+    address: 'Casa de Eventos São Paulo',
     description: '',
-    price: 20,
+    price: 35,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
   {
@@ -180,10 +180,10 @@ const DATA = [
     title: 'Event 9',
     date: '03/10/20',
     time: '20:00',
-    locale: 'Campinas',
-    address: 'Casa de Eventos Campinas',
+    locale: 'São Paulo',
+    address: 'Casa de Eventos São Paulo',
     description: '',
-    price: 20,
+    price: 40,
     imageLink:'https://www.queerevents.ca/sites/default/files/default_images/QES-Banner_Generic_EventListing.png',
   },
 ];

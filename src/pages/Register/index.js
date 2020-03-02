@@ -14,7 +14,6 @@ export default function Register({ navigation }) {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [rg, setRG] = useState('');
-  const [locale, setLocale] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [matchPasswords, setMatchPasswords] = useState(false);
@@ -38,20 +37,11 @@ export default function Register({ navigation }) {
   }
 
   function validateInputs(){
-    console.log(userName)
-    console.log(email)
-    console.log(rg)
-    console.log(locale)
-    console.log(password)
-    console.log(confirmPassword)
     if(userName === '') return false;
     if(email === '') return false;
     if(rg === '') return false;
-    if(locale === 'null' || locale === '') return false;
     if(password === '') return false;
     if(confirmPassword === '') return false;
-
-    console.log(matchPasswords)
 
     return matchPasswords;
   }
@@ -99,16 +89,6 @@ export default function Register({ navigation }) {
           value={rg}
           onChangeText={setRG}
         />
-
-        <DropDown
-          selectedValue={locale}
-          onValueChange={value => setLocale(value)}
-        >
-          <DropDown.Item label="Selecione uma Região" value="null" />
-          <DropDown.Item label="Campinas" value="campinas" />
-          <DropDown.Item label="São Paulo" value="saopaulo" />
-          <DropDown.Item label="Sumaré" value="sumare" />
-        </DropDown>
           
         <Input
           placeholder="Senha"

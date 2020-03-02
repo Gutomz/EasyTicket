@@ -93,10 +93,10 @@ DATA = [
   {
     id: '02',
     event: {
-      id: '58694a0f-3da1-471f-bcz-145571e29d72',
-      title: 'Event 4',
-      date: '27/07/20',
-      time: '19:00',
+      id: '58694as0f-3da1-471f-vs96-145571e29d72',
+      title: 'Event 8',
+      date: '22/05/20',
+      time: '22:00',
       locale: 'Campinas',
       address: 'Casa de Eventos Campinas',
       description: '',
@@ -109,3 +109,4 @@ DATA = [
     buyTime: '14:10:45',
   },
 ];
+
