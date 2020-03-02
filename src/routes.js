@@ -70,7 +70,6 @@ function UserRoutes( { navigation } ){
     <Tab.Navigator initialRouteName="Dashboard"
 
       screenOptions={({ route }) => ({
-
         tabBarIcon: ({ color, size }) => {
           let iconName;
 

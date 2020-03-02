@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text } from 'react-native'
+import { FlatList } from 'react-native'
 
 import { Container, ToolContainer, EmptyMessage } from './styles';
 
@@ -30,11 +30,19 @@ export default function EventsList({ navigation, route }){
       setFiltredList(data);
       setDataReady(true);
     }
+    const unsubscribe = navigation.addListener('tabPress', e =>{
+
+      setLikedEvents(LIKEDEVENTS);
+
+    });
 
     setList();
-  }, []);
+
+    return unsubscribe;
+  }, [navigation]);
 
   useEffect(()=>{
+
     if(!dataReady) return;
     let data = [];
     if(likedOnly) data = likedFilter(eventsList); 
